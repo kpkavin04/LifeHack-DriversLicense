@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrol Route Generator</title>
+</head>
+<style>
+    html {
+    scroll-behavior: smooth;
+}
+  
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: scroll;
+    background: #000;
+    width: 100%;
+    max-height: 100vh;
+}
+  
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* ==========Header & Footer Code=========== */
+
+.header,
+.footer {
+    height: 7vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: black;
+    font-size: 30px;
+}
+/* 
+==========Container Code========== */
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+/* =====mapDisplay===== */
+
+.container img {
+    max-width: 65vw;
+}
+
+.mapDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =====controlPanel===== */
+
+.controlPanel {
+    max-width: 35vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.controlPanel div {
+    margin-right: 30px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.usageInstructions,
+.theGenerator {
+    display: flex;
+    flex-direction: column;
+}
+
+.usageInstructions {
+    gap: 10px;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#submit {
+    max-width: 100px;
+    align-self: center;
+}
+
+.result {
+    width: 100%;
+    margin-top: 30px;
+}
+
+
+</style>
+
+<body>
+
+<div class="header">
+    <div class="title">Optimised Patrol Route Generator</div>
+</div>
+
+<div class="container">
+    <div class="mapDisplay">
+        <img src="{{ url_for('static', filename='images/mrt-map.png') }}" alt="Logo">
+    </div>
+    <div class="controlPanel">
+        <div class="usageInstructions">
+            <h1 class="title">Instructions</h1>
+            <p>1. For demonstration purposes, the stations in the highlighted zone (SPF 'G' Div) would be used when generating the patrol route. </p>
+            <p>2. This program gives you the liberty of choosing your starting station and number of stations you wish to patrol. Go ahead and input your choice in the box below.</p>
+            <p></p>
+        </div>
+
+        <div class="listOfStations">
+            <h1>List of Stations</h1>
+            <p>Mattar, MacPherson, Ubi, Kaki Bukit, Bedok North, Bedok Reservoir, Tampines West, Tampines, Tampines East, Upper Changi, Expo, Paya Lebar, Aljunied, Kallang, Eunos, Kembangan, Bedok, Tanah Merah, Simei, Pasir Ris, Dakota, Mountbatten, Stadium</p>
+        </div>
+
+        <div class="theGenerator">
+            <h1>Patrol Route Generator</h1>
+            <form id="form" name="passdata" action="." method="post">
+                <label>Number of Stations:</label>
+                <input type="text" name="numberOfStations">
+                <label>Starting Station:</label>
+                <input type="text" name="startingStation">
+                <input id="submit" type="submit" name="submit">
+            </form>
+            <div class="result">{{path}}</div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="teamName">Prepared by: DriversLicense</div>
+</div>
+    
+
+</body>
+
+</html>
